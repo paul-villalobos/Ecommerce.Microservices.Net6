@@ -26,7 +26,7 @@ namespace Mango.Services.ProductAPI.Controllers
             }
             catch (Exception ex)
             {
-                _response.IsSucces = false;
+                _response.IsSuccess = false;
                 _response.ErrorMessages = new List<string> { ex.Message };
             }
             return _response;
@@ -43,7 +43,7 @@ namespace Mango.Services.ProductAPI.Controllers
             }
             catch (Exception ex)
             {
-                _response.IsSucces = false;
+                _response.IsSuccess = false;
                 _response.ErrorMessages = new List<string> { ex.Message };
             }
             return _response;
@@ -59,7 +59,7 @@ namespace Mango.Services.ProductAPI.Controllers
             }
             catch (Exception ex)
             {
-                _response.IsSucces = false;
+                _response.IsSuccess = false;
                 _response.ErrorMessages = new List<string> { ex.Message };
             }
             return _response;
@@ -75,13 +75,14 @@ namespace Mango.Services.ProductAPI.Controllers
             }
             catch (Exception ex)
             {
-                _response.IsSucces = false;
+                _response.IsSuccess = false;
                 _response.ErrorMessages = new List<string> { ex.Message };
             }
             return _response;
         }
 
         [HttpDelete]
+        [Route("{id}")]
         public async Task<object> Delete(int id)
         {
             try
@@ -91,7 +92,7 @@ namespace Mango.Services.ProductAPI.Controllers
             }
             catch (Exception ex)
             {
-                _response.IsSucces = false;
+                _response.IsSuccess = false;
                 _response.ErrorMessages = new List<string> { ex.Message };
             }
             return _response;
