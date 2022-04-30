@@ -5,11 +5,13 @@ VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{58E16242-16E1-482D-A7BB-01F23446A737}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Web", "Mango.Web\Mango.Web.csproj", "{72A144D6-4296-45AA-A8CD-27A1D1161BCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mango.Web", "Mango.Web\Mango.Web.csproj", "{72A144D6-4296-45AA-A8CD-27A1D1161BCD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{7272B194-25F6-4355-B25A-C221EBFFE6A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Services.ProductAPI", "Mango.Services.ProductAPI\Mango.Services.ProductAPI.csproj", "{A03D41F4-698C-45B4-9782-8E0EE4E12FAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mango.Services.ProductAPI", "Mango.Services.ProductAPI\Mango.Services.ProductAPI.csproj", "{A03D41F4-698C-45B4-9782-8E0EE4E12FAC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mango.Services.Identity", "Mango.Services.Identity\Mango.Services.Identity.csproj", "{442A0C3C-31BF-4804-865C-2666111379F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{A03D41F4-698C-45B4-9782-8E0EE4E12FAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A03D41F4-698C-45B4-9782-8E0EE4E12FAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A03D41F4-698C-45B4-9782-8E0EE4E12FAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{442A0C3C-31BF-4804-865C-2666111379F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{442A0C3C-31BF-4804-865C-2666111379F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{442A0C3C-31BF-4804-865C-2666111379F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{442A0C3C-31BF-4804-865C-2666111379F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{72A144D6-4296-45AA-A8CD-27A1D1161BCD} = {58E16242-16E1-482D-A7BB-01F23446A737}
 		{A03D41F4-698C-45B4-9782-8E0EE4E12FAC} = {7272B194-25F6-4355-B25A-C221EBFFE6A6}
+		{442A0C3C-31BF-4804-865C-2666111379F2} = {7272B194-25F6-4355-B25A-C221EBFFE6A6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3429129C-7A11-4E20-A7C6-8EAC9081A487}

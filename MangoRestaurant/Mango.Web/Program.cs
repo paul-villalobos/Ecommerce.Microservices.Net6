@@ -13,6 +13,40 @@ builder.Services.AddScoped<IProductService, ProductService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = "Cookies";
+    options.DefaultChallengeScheme = "oidc";
+})
+    .AddCookie("Cookies", c =>
+    {
+        c.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+        //c.LoginPath = "/Account/Login";  No sirve con oidc
+        //c.AccessDeniedPath = "/Account/AccessDenied"; No sirve con oidc
+    })
+    .AddOpenIdConnect("oidc", options =>
+    {
+        options.Authority = builder.Configuration["ServiceUrls:IdentityAPI"];
+        options.GetClaimsFromUserInfoEndpoint = true;
+        options.ClientId = "mango";
+        options.ClientSecret = "secret";
+        options.ResponseType = "code";
+        options.TokenValidationParameters.NameClaimType = "name";
+        options.TokenValidationParameters.RoleClaimType = "role";
+        options.Scope.Add("mango");
+        options.SaveTokens = true;
+        options.ReturnUrlParameter = "/Home";
+        //options.Configuration = new OpenIdConnectConfiguration
+        //{
+        //    AuthorizationEndpoint = builder.Configuration["ServiceUrls:IdentityAPI"] + "/Account/Login"
+
+
+        //    //TODO: Especificar tokenEndpoint
+        //    //TokenEndpoint = ""
+        //};
+
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,7 +61,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
