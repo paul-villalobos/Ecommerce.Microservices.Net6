@@ -153,6 +153,7 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
 
                 await _messageBus.PublishMessage(checkoutHeaderDto,
                     _config.GetValue<string>("AzureServiceAPI:Topics:Checkout"));
+                await _cartRepository.ClearCart(checkoutHeaderDto.UserId);
 
             }
             catch (Exception ex)
