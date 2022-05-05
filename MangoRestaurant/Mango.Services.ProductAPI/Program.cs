@@ -24,7 +24,7 @@ builder.Services.AddControllers();
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
     {
-        options.Authority = "https://localhost:5001";
+        options.Authority = builder.Configuration["Identity:Authority"];
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateAudience = false

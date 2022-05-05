@@ -36,9 +36,9 @@ builder.Services.AddAuthentication(options =>
     {
         options.Authority = builder.Configuration["ServiceUrls:IdentityAPI"];
         options.GetClaimsFromUserInfoEndpoint = true;
-        options.ClientId = "mango";
-        options.ClientSecret = "secret";
-        options.ResponseType = "code";
+        options.ClientId = builder.Configuration["Identity:ClientId"];
+        options.ClientSecret = builder.Configuration["Identity:ClientSecret"];
+        options.ResponseType = builder.Configuration["Identity:GrantType"];
         options.ClaimActions.MapJsonKey("role", "role", "role"); // If a claim is present it will automatically map those claims
         options.ClaimActions.MapJsonKey("sub", "sub", "sub");
         options.TokenValidationParameters.NameClaimType = "name";
@@ -46,14 +46,6 @@ builder.Services.AddAuthentication(options =>
         options.Scope.Add("mango");
         options.SaveTokens = true;
         options.ReturnUrlParameter = "/Home";
-        //options.Configuration = new OpenIdConnectConfiguration
-        //{
-        //    AuthorizationEndpoint = builder.Configuration["ServiceUrls:IdentityAPI"] + "/Account/Login"
-
-
-        //    //TODO: Especificar tokenEndpoint
-        //    //TokenEndpoint = ""
-        //};
 
     });
 

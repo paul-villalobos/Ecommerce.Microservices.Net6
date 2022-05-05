@@ -28,6 +28,35 @@ namespace Mango.Web.Controllers
         {
             return View(await LoadCartDtoBasedOnLoggedInUser());
         }
+        [HttpGet]
+        public async Task<IActionResult> Confirmation()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Checkout(CartDto cartDto)
+        {
+            if (!ModelState.IsValid) return View(await LoadCartDtoBasedOnLoggedInUser());
+            try
+            {
+                var accessToken = await HttpContext.GetTokenAsync("access_token");
+                var response = await _cartService.Checkout<ResponseDto>(cartDto.CartHeader, accessToken);
+
+                if (!response.IsSuccess)
+                {
+                    TempData["Error"] = response.DisplayMessage;
+                    return RedirectToAction(nameof(Checkout));
+                }
+
+                return RedirectToAction(nameof(Confirmation));
+            }
+            catch (Exception ex)
+            {
+                return View(cartDto);
+            }
+        }
 
         [HttpPost]
         [ActionName("ApplyCoupon")]

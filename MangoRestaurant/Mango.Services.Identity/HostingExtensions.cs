@@ -1,3 +1,5 @@
+using Duende.IdentityServer;
+using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Services;
 using Mango.Services.Identity.Data;
 using Mango.Services.Identity.Initializer;
@@ -35,7 +37,26 @@ internal static class HostingExtensions
             })
             .AddInMemoryIdentityResources(SD.IdentityResources)
             .AddInMemoryApiScopes(SD.ApiScopes)
-            .AddInMemoryClients(SD.Clients)
+            .AddInMemoryClients(new List<Client>
+        {
+            new Client
+            {
+                ClientId = builder.Configuration["Identity:ClientId"],
+                ClientSecrets = { new Secret(builder.Configuration["Identity:ClientSecret"].Sha256()) },
+                AllowedGrantTypes = GrantTypes.Code,
+                RedirectUris = { builder.Configuration["Identity:ClientUrl"] + "/signin-oidc" },
+                PostLogoutRedirectUris = {builder.Configuration["Identity:ClientUrl"] + "/signout-callback-oidc" },
+                AllowedScopes = new List<string>
+                {
+                    IdentityServerConstants.StandardScopes.OpenId,
+                    IdentityServerConstants.StandardScopes.Profile,
+                    IdentityServerConstants.StandardScopes.Email,
+                    "mango"
+                }
+                // AllowOfflineAccess = true,
+                // FrontChannelLogoutUri = "https://localhost:44300/signout-oidc",
+            }
+        })
             .AddAspNetIdentity<ApplicationUser>();
 
 
