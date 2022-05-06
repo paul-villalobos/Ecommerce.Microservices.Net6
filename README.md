@@ -11,6 +11,7 @@ Before you begin, ensure you have met the following requirements:
 ## Technology stack used
 * Identity Server 6
 * .Net MVC
+* Ocelot API Gateway
 * Entity Framework Core
 * SQL Server
 * Azure Service Bus
